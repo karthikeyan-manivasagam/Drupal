@@ -1,7 +1,5 @@
-How to alter single taxonomy term overview page 
-
-
 <?php
+//How to alter single taxonomy term overview page 
 
 //Add extra column in taxonomy term overview page
 
@@ -9,14 +7,11 @@ use \Drupal\Core\Url;
 use \Drupal\Core\Form\FormStateInterface;
 
 
-function modulename_form_taxonomy_overview_terms_alter(
-  &$form, FormStateInterface $form_state,
-  $form_id
-) {
+function modulename_form_taxonomy_overview_terms_alter(&$form, FormStateInterface $form_state, $form_id) {
 
-$path = \Drupal::request()->getpathInfo();
- $arg  = explode('/',$path);
-//manage/vocabulary_name/overview
+  $path = \Drupal::request()->getpathInfo();
+  $arg  = explode('/',$path);
+  //manage/vocabulary_name/overview
  if( $arg[5] == "vocabulary_name") {
   if (isset($form['terms']['#header'])) {
     array_splice($form['terms']['#header'], 1, 0, [t('Extra Column')]);
@@ -44,11 +39,11 @@ $path = \Drupal::request()->getpathInfo();
       $column['#url'] =   Url::fromUserInput('/somecustomview/'.$_tids);
 
       // Enable to  open page in Modal
-          $column['#attributes'] = [
+      /*$column['#attributes'] = [
         'class' => ['use-ajax', 'button', 'button--small'],
         'data-dialog-type' => 'modal',
         'data-dialog-options' => Json::encode(['width' => 800, "title" => $term->getName()]),
-      ];
+      ];*/
        
     array_splice($form['terms'][$key], $position + 1, 0, ['extra_column' => $column]);
  }
