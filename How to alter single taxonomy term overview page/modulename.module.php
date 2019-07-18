@@ -1,7 +1,7 @@
 <?php
-//How to alter single taxonomy term overview page 
+//How to alter single taxonomy term listing in overview page 
 
-//Add extra column in taxonomy term overview page
+//Add extra column in taxonomy term listing in overview page
 
 use \Drupal\Core\Url;
 use \Drupal\Core\Form\FormStateInterface;
