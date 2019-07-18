@@ -31,7 +31,7 @@ function modulename_field_widget_entity_reference_paragraphs_form_alter(&$elemen
                  'message' => NULL,
                 ],
           ];
-      / Set default value options for state when the country_select  paragraph is loaded     
+      // Set default value options for state when the country_select  paragraph is loaded     
       $default_country = $element['subform']['field_country']['widget']['#default_value'];
       if(isset($default_country[0])) {
          $options = get_state_options_by_country($default_country[0]);
