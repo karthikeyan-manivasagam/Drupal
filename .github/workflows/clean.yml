@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - develop
+      - feature/cleanup
 jobs:
   housekeeping:
     name: Cleanup old branches
