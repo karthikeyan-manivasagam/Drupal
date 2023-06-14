@@ -1,0 +1,32 @@
+name: CLEAR OLD BRANCHES
+
+on:
+  push:
+    branches:
+      - feature/cleanup
+#  schedule:
+#    - cron: "* * * * *"
+jobs:
+  cleaning:
+    name: Cleanup old branches
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - run: sudo git config --system --add safe.directory /github/workspace
+      - name: Set ownership
+        run: |
+          # this is to fix GIT not liking owner of the checkout dir
+          sudo chown -R $(id -u):$(id -g) $PWD
+          sudo chmod 777 -R /github/workspace
+      - name: clean
+        uses: beatlabs/delete-old-branches-action@v0.0.6
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          date: '1 month ago'
+          dry_run: false
+          delete_tags: false
+          minimum_tags: 5
+          extra_protected_branch_regex: master.*|main|develop|^release.*|.*_p$
+      - run: sudo git config --system --add safe.directory /github/workspace        
+      
