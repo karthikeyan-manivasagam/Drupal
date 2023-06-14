@@ -18,7 +18,7 @@ jobs:
         run: |
           # this is to fix GIT not liking owner of the checkout dir
           sudo chown -R $(id -u):$(id -g) $PWD
-          sudo chmod 777 -R /github/workspace
+          #sudo chmod 777 -R /github/workspace
       - name: clean
         uses: beatlabs/delete-old-branches-action@v0.0.6
         with:
